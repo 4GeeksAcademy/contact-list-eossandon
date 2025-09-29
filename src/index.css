@@ -1,0 +1,25 @@
+.img-contact {
+    width: 150px !important;
+    height: 150px !important;
+    border-radius: 50% !important;
+    padding: 5px;
+}
+
+
+
+.btn {
+    position: relative;
+    left: 600px;
+}
+
+
+
+h6 {
+    margin-left: 30px;
+    color: rgb(95, 93, 93);
+}
+
+h3 {
+    margin-top: 13px;
+    margin-left: 30px;
+}
