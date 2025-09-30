@@ -2,17 +2,14 @@ import React, { useState, useEffect } from "react";
 import Image from "../assets/img/rigo-baby.jpg";
 import '../index.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { Link, useNavigate } from "react-router-dom";
 
 const API_URL = "https://playground.4geeks.com/contact";
 
 
 export const Contact = () => {
     const [contacts, setContacts] = useState([]);
-    const [nameValue, setNameValue] = useState("");
-    const [addressValue, setAddressValue] = useState("");
-    const [phoneValue, setPhoneValue] = useState("");
-    const [emailValue, setEmailValue] = useState("");
-
+    const navigate = useNavigate();
 
     const getAllContact = async () => {
         try {
@@ -36,7 +33,7 @@ export const Contact = () => {
     return (
         <div className="container">
             <div className="d-flex justify-content-end">
-                <button className="btn btn-success mb-3 " type="button">Agregar usuario</button>
+                <button className="btn btn-success mt-3 mb-3 " type="button" onClick={() => navigate("./AddContact")}>Agregar usuario</button>
             </div>
             {contacts.map((contacts, index) => (
                 <div key={index} className="row border  mb-0">
