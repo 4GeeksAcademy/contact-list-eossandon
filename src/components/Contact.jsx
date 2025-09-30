@@ -1,27 +1,64 @@
+import React, { useState, useEffect } from "react";
 import Image from "../assets/img/rigo-baby.jpg";
 import '../index.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
+const API_URL = "https://playground.4geeks.com/contact";
+
 
 export const Contact = () => {
+    const [contacts, setContacts] = useState([]);
+    const [nameValue, setNameValue] = useState("");
+    const [addressValue, setAddressValue] = useState("");
+    const [phoneValue, setPhoneValue] = useState("");
+    const [emailValue, setEmailValue] = useState("");
+
+
+    const getAllContact = async () => {
+        try {
+            const response = await fetch(`${API_URL}/agendas/esteban/contacts`, {
+                method: "GET",
+            });
+            const data = await response.json();
+            setContacts(data.contacts || []);
+
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getAllContact();
+    }, []);
+
+
     return (
         <div className="container">
-                <div className="row  border border-danger">
-                    <div className="col-lg-2 col-md-4 col-sm-4 d-flex text-align-center justify-content-center border border-danger">
-                        <img className="img-contact border border-danger" src={Image} alt="" />
+            <div className="d-flex justify-content-end">
+                <button className="btn btn-success mb-3 " type="button">Agregar usuario</button>
+            </div>
+            {contacts.map((contacts, index) => (
+                <div key={index} className="row border  mb-0">
+                    <div className="col-lg-2 col-md-4 col-sm-4 d-flex text-align-center justify-content-center">
+                        <img className="img-contact" src={Image} alt="" />
                     </div>
 
-                    <div className="col-lg-7 col-md-6 col-sm-4 info-contact border border-danger">
-                        <h3>Esteban Ossandon</h3>
-                        <h6><i class="bi bi-geo-alt-fill">a</i></h6>
-                        <h6><i class="bi bi-telephone-fill">b</i></h6>
-                        <h6><i class="bi bi-envelope-open-fill">c</i></h6>
+                    <div className="col-lg-7 col-md-6 col-sm-5 info-contact ">
+                        <h3>{contacts.name}</h3>
+                        <h6><i className="bi bi-geo-alt-fill"> {contacts.address}</i></h6>
+                        <h6><i className="bi bi-telephone-fill"> {contacts.phone}</i></h6>
+                        <h6><i className="bi bi-envelope-open-fill"> {contacts.email}</i></h6>
                     </div>
-                    <div className="col-lg-3 col-md-2 col-sm-4 d-flex text-align-end justify-content-end border border-danger">
-                        <i class="bi bi-pencil-fill btn"></i><i class="bi bi-trash-fill btn"></i>
+
+                    <div className="col-lg-3 col-md-2 col-sm-3 d-flex text-align-end justify-content-end ">
+                        <i className="bi bi-pencil-fill p-4"></i>
+                        <i className="bi bi-trash-fill p-4"></i>
                     </div>
                 </div>
+            ))}
         </div>
-    )
+    );
+
 }
 
