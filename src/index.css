@@ -17,5 +17,6 @@ h3 {
 
 .ex {
     cursor: pointer;
-
+    height: 0;
+    margin: 25px;
 }

@@ -15,7 +15,6 @@ export const AddContact = () => {
 
     const postContact = async () => {
         try {
-            console.log(inputName + inputPhone + inputEmail + inputAddress)
             const response = await fetch(`${API_URL}/agendas/esteban/contacts`, {
                 method: "POST",
                 headers: {
