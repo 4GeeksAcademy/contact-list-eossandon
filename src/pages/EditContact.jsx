@@ -7,17 +7,21 @@ import { Link } from "react-router-dom";
 const API_URL = "https://playground.4geeks.com/contact";
 
 
-export const AddContact = () => {
+export const EditContact = (id) => {
+    const { store, dispatch } = useGlobalReducer()
+    
+
 
     const [inputName, setInputName] = useState("");
     const [inputPhone, setInputPhone] = useState("");
     const [inputEmail, setInputEmail] = useState("");
     const [inputAddress, setInputAddress] = useState("");
 
-    const postContact = async () => {
+    const puthContact = async () => {
         try {
-            const response = await fetch(`${API_URL}/agendas/esteban/contacts`, {
-                method: "POST",
+            dispatch({type:"edit_contact" , payload:{ name: inputName , phone: inputPhone , email: inputEmail , address: inputAddress}})
+            const response = await fetch(`${API_URL}/agendas/esteban/contacts/11`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -28,7 +32,6 @@ export const AddContact = () => {
                     address: inputAddress,
                 }),
             });
-
         } catch (error) {
             console.log(error);
         }
@@ -38,9 +41,9 @@ export const AddContact = () => {
     return (
         <div className="container mt-5">
             <div className="d-flex align-item-center justify-content-center mb-5">
-                <h1>Add new Contact</h1>
+                <h1>Edit contact</h1>
             </div>
-            <form className="form" onSubmit={(e) => { e.preventDefault(); postContact(); }}>
+            <form className="form" onSubmit={(e) => { e.preventDefault(); puthContact(); }}>
                 <div className="mb-3">
                     <label htmlFor="basic-name" className="form-label">Full Name:</label>
                     <div className="input-group">

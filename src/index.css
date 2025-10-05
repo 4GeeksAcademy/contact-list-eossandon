@@ -15,8 +15,10 @@ h3 {
     margin-left: 30px;
 }
 
+
 .ex {
     cursor: pointer;
     height: 0;
     margin: 25px;
+    color: black;
 }
