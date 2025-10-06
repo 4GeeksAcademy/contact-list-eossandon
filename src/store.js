@@ -30,16 +30,17 @@ export default function storeReducer(store, action = {}) {
       };
     case 'edit_contact':
 
-      const { name, phone, email, address } = action.payload
+      const { name, phone, email, address, ids} = action.payload
 
       return {
         ...store,
-        contacts: store.contacts.map((contact) => (contact.id === id ? {
+        contacts: store.contacts.map((contact) => (contact.id === ids ? {
           ...contact,
           name: name,
           phone: phone,
           email: email,
-          address: address
+          address: address,
+          id: ids
         } : contact))
       };
     case 'set_contacts':

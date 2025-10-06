@@ -1,15 +1,14 @@
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useParams } from "react-router-dom";
 
 
 const API_URL = "https://playground.4geeks.com/contact";
 
-
-export const EditContact = (id) => {
+export const EditContact = () => {
     const { store, dispatch } = useGlobalReducer()
-    
+    const { theId } = useParams()
+
 
 
     const [inputName, setInputName] = useState("");
@@ -17,10 +16,10 @@ export const EditContact = (id) => {
     const [inputEmail, setInputEmail] = useState("");
     const [inputAddress, setInputAddress] = useState("");
 
-    const puthContact = async () => {
+    const puthContact = async (id) => {
         try {
             dispatch({type:"edit_contact" , payload:{ name: inputName , phone: inputPhone , email: inputEmail , address: inputAddress}})
-            const response = await fetch(`${API_URL}/agendas/esteban/contacts/11`, {
+            const response = await fetch(`${API_URL}/agendas/esteban/contacts/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -43,7 +42,7 @@ export const EditContact = (id) => {
             <div className="d-flex align-item-center justify-content-center mb-5">
                 <h1>Edit contact</h1>
             </div>
-            <form className="form" onSubmit={(e) => { e.preventDefault(); puthContact(); }}>
+            <form className="form" onSubmit={(e) => { e.preventDefault(); puthContact(parseInt(theId)); }}>
                 <div className="mb-3">
                     <label htmlFor="basic-name" className="form-label">Full Name:</label>
                     <div className="input-group">
