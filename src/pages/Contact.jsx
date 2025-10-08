@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Image from "../assets/img/rigo-baby.jpg";
+import Image from "../assets/img/contact.jpg";
 import '../index.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Link } from "react-router-dom";
@@ -66,7 +66,7 @@ export const Contact = () => {
             </div>
             {store && store.contacts?.map((item) => (
                 <div key={item.id} className="row border mb-0">
-                    <div className="col-lg-2 col-md-4 col-sm-4 col-5 border border-danger d-flex text-align-center justify-content-center">
+                    <div className="col-lg-2 col-md-4 col-sm-4 col-5  d-flex text-align-center justify-content-center">
                         <img className="img-contact" src={Image} alt="" />
                     </div>
 
@@ -81,17 +81,17 @@ export const Contact = () => {
                         <Link className="ex" to={"/edit/" + item.id}>
                             <i className="bi bi-pencil-fill ex"></i>
                         </Link>
-                        <i className="bi bi-trash-fill  ex" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                        <i className="bi bi-trash-fill  ex" data-bs-toggle="modal" data-bs-target={`#exampleModal-${item.id}`}></i>
                     </div>
-                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal fade" id={`exampleModal-${item.id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">
                                     <h1 className="modal-title fs-5" id="exampleModalLabel">Delete contacts</h1>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" data-id ={item.id}></button>
                                 </div>
                                 <div className="modal-body">
-                                    ¿Desea eliminar este contacto?
+                                    ¿Desea eliminar a {item.name} ?
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

@@ -18,7 +18,7 @@ export const EditContact = () => {
 
     const puthContact = async (id) => {
         try {
-            dispatch({type:"edit_contact" , payload:{ name: inputName , phone: inputPhone , email: inputEmail , address: inputAddress}})
+            dispatch({ type: "edit_contact", payload: { name: inputName, phone: inputPhone, email: inputEmail, address: inputAddress } })
             const response = await fetch(`${API_URL}/agendas/esteban/contacts/${id}`, {
                 method: "PUT",
                 headers: {
@@ -73,6 +73,9 @@ export const EditContact = () => {
                 <div>
                     <button type="submit" className="btn btn-primary w-100" >Submit</button>
                 </div>
+                <Link to="/contact">
+                    or get to contacts
+                </Link>
             </form>
 
         </div>

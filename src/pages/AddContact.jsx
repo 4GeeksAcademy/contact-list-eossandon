@@ -71,6 +71,9 @@ export const AddContact = () => {
                 <div>
                     <button type="submit" className="btn btn-primary w-100" >Submit</button>
                 </div>
+                <Link to="/contact">
+                    or get to contacts
+                </Link>
             </form>
 
         </div>
