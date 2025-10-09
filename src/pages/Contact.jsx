@@ -78,12 +78,12 @@ export const Contact = () => {
                     </div>
 
                     <div className="col-lg-3 col-md-2 col-sm-3 col-4 d-flex text-align-end justify-content-end ">
-                        <Link className="ex" to={"/edit/" + item.id}>
+                        <Link className="ex" to={`/edit/${item.id}/${item.name}/${item.phone}/${item.email}/${item.address}`}>
                             <i className="bi bi-pencil-fill ex"></i>
                         </Link>
                         <i className="bi bi-trash-fill  ex" data-bs-toggle="modal" data-bs-target={`#exampleModal-${item.id}`}></i>
                     </div>
-                    <div className="modal fade" id={`exampleModal-${item.id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal fade" id={`exampleModal-${item.id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" >
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">
@@ -102,7 +102,6 @@ export const Contact = () => {
                     </div>
                 </div>
             ))}
-
         </div>
     );
 
