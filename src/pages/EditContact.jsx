@@ -7,7 +7,7 @@ const API_URL = "https://playground.4geeks.com/contact";
 
 export const EditContact = () => {
     const { store, dispatch } = useGlobalReducer()
-    const { theId , theName , theAddress , thePhone , theEmail } = useParams()
+    const { theId, theName, theAddress, thePhone, theEmail } = useParams()
 
 
 
@@ -16,7 +16,7 @@ export const EditContact = () => {
     const [inputEmail, setInputEmail] = useState("");
     const [inputAddress, setInputAddress] = useState("");
 
-    const puthContact = async (id,name,phone,email,address) => {
+    const puthContact = async (id, name, phone, email, address) => {
         try {
             dispatch({ type: "edit_contact", payload: { name: inputName, phone: inputPhone, email: inputEmail, address: inputAddress } })
             const response = await fetch(`${API_URL}/agendas/esteban/contacts/${id}`, {
@@ -36,6 +36,13 @@ export const EditContact = () => {
         }
     };
 
+    useEffect(() => {
+        setInputName(theName || "");
+        setInputAddress(theAddress || "");
+        setInputPhone(thePhone || "");
+        setInputEmail(theEmail || "");
+    }, [theName, theAddress, thePhone, theEmail]);
+
 
     return (
         <div className="container mt-5">
@@ -46,28 +53,28 @@ export const EditContact = () => {
                 <div className="mb-3">
                     <label htmlFor="basic-name" className="form-label">Full Name:</label>
                     <div className="input-group">
-                        <input type="text" className="form-control" id="basic-name" aria-describedby="basic-addon3 basic-addon4" onChange={(e) => setInputName(e.target.value)} placeholder={theName} required />
+                        <input type="text" className="form-control" id="basic-name" aria-describedby="basic-addon3 basic-addon4" onChange={(e) => setInputName(e.target.value)} value={inputName} required />
                     </div>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="basic-address" className="form-label">Address:</label>
                     <div className="input-group">
-                        <input type="text" className="form-control" id="basic-address" aria-describedby="basic-addon3 basic-addon4" onChange={(e) => setInputAddress(e.target.value)} placeholder={theAddress} required />
+                        <input type="text" className="form-control" id="basic-address" aria-describedby="basic-addon3 basic-addon4" onChange={(e) => setInputAddress(e.target.value)} value={inputAddress} required />
                     </div>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="basic-phone" className="form-label">Phone:</label>
                     <div className="input-group">
-                        <input type="text" className="form-control" id="basic-phone" aria-describedby="basic-addon3 basic-addon4" onChange={(e) => setInputPhone(e.target.value)} placeholder={thePhone}  required />
+                        <input type="text" className="form-control" id="basic-phone" aria-describedby="basic-addon3 basic-addon4" onChange={(e) => setInputPhone(e.target.value)} value={inputPhone} required />
                     </div>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="basic-email" className="form-label">Email:</label>
                     <div className="input-group">
-                        <input type="text" className="form-control" id="basic-email" aria-describedby="basic-addon3 basic-addon4" onChange={(e) => setInputEmail(e.target.value)} placeholder={theEmail} required />
+                        <input type="text" className="form-control" id="basic-email" aria-describedby="basic-addon3 basic-addon4" onChange={(e) => setInputEmail(e.target.value)} value={inputEmail} required />
                     </div>
                 </div>
                 <div>
